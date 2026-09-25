@@ -1,0 +1,6 @@
+{
+  "name": "Singapore Renter & Property MCP Server",
+  "description": "Property intelligence and market comparables for Singapore rentals, with verified location data, HDB transactions, and Streamable HTTP MCP tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,788 @@
+[
+  {
+    "name": "Rosyth School",
+    "lat": 1.3727,
+    "lng": 103.8744,
+    "town": "SERANGOON"
+  },
+  {
+    "name": "Nanyang Primary School",
+    "lat": 1.3211,
+    "lng": 103.8078,
+    "town": "BUKIT TIMAH"
+  },
+  {
+    "name": "Tao Nan School",
+    "lat": 1.3054,
+    "lng": 103.9099,
+    "town": "MARINE PARADE"
+  },
+  {
+    "name": "Raffles Girls' Primary School",
+    "lat": 1.3294,
+    "lng": 103.8064,
+    "town": "BUKIT TIMAH"
+  },
+  {
+    "name": "Henry Park Primary School",
+    "lat": 1.3167,
+    "lng": 103.7843,
+    "town": "QUEENSTOWN"
+  },
+  {
+    "name": "Catholic High School (Primary)",
+    "lat": 1.3547,
+    "lng": 103.8447,
+    "town": "BISHAN"
+  },
+  {
+    "name": "Ai Tong School",
+    "lat": 1.3606,
+    "lng": 103.8336,
+    "town": "BISHAN"
+  },
+  {
+    "name": "Pei Hwa Presbyterian Primary School",
+    "lat": 1.3382,
+    "lng": 103.7702,
+    "town": "BUKIT PANJANG"
+  },
+  {
+    "name": "Red Swastika School",
+    "lat": 1.3324,
+    "lng": 103.9355,
+    "town": "BEDOK"
+  },
+  {
+    "name": "Rulang Primary School",
+    "lat": 1.3468,
+    "lng": 103.719,
+    "town": "JURONG WEST"
+  },
+  {
+    "name": "Nan Hua Primary School",
+    "lat": 1.3197,
+    "lng": 103.7634,
+    "town": "CLEMENTI"
+  },
+  {
+    "name": "CHIJ St. Nicholas Girls' School",
+    "lat": 1.3734,
+    "lng": 103.8344,
+    "town": "ANG MO KIO"
+  },
+  {
+    "name": "Anglo-Chinese School (Primary)",
+    "lat": 1.3184,
+    "lng": 103.8378,
+    "town": "NOVENA"
+  },
+  {
+    "name": "Anglo-Chinese School (Junior)",
+    "lat": 1.309,
+    "lng": 103.8415,
+    "town": "CENTRAL"
+  },
+  {
+    "name": "St. Joseph's Institution Junior",
+    "lat": 1.3175,
+    "lng": 103.8471,
+    "town": "NOVENA"
+  },
+  {
+    "name": "Kong Hwa School",
+    "lat": 1.3117,
+    "lng": 103.8869,
+    "town": "GEYLANG"
+  },
+  {
+    "name": "Maha Bodhi School",
+    "lat": 1.3283,
+    "lng": 103.9018,
+    "town": "GEYLANG"
+  },
+  {
+    "name": "Gongshang Primary School",
+    "lat": 1.3575,
+    "lng": 103.9493,
+    "town": "TAMPINES"
+  },
+  {
+    "name": "St. Hilda's Primary School",
+    "lat": 1.3499,
+    "lng": 103.9377,
+    "town": "TAMPINES"
+  },
+  {
+    "name": "Poi Ching School",
+    "lat": 1.3584,
+    "lng": 103.9388,
+    "town": "TAMPINES"
+  },
+  {
+    "name": "Radin Mas Primary School",
+    "lat": 1.2753,
+    "lng": 103.8249,
+    "town": "BUKIT MERAH"
+  },
+  {
+    "name": "River Valley Primary School",
+    "lat": 1.2952,
+    "lng": 103.8367,
+    "town": "RIVER VALLEY"
+  },
+  {
+    "name": "Holy Innocents' Primary School",
+    "lat": 1.3669,
+    "lng": 103.8941,
+    "town": "HOUGANG"
+  },
+  {
+    "name": "CHIJ Primary (Toa Payoh)",
+    "lat": 1.3328,
+    "lng": 103.8427,
+    "town": "TOA PAYOH"
+  },
+  {
+    "name": "Kuo Chuan Presbyterian Primary School",
+    "lat": 1.3497,
+    "lng": 103.8548,
+    "town": "BISHAN"
+  },
+  {
+    "name": "Maris Stella High School (Primary)",
+    "lat": 1.3414,
+    "lng": 103.8778,
+    "town": "TOA PAYOH"
+  },
+  {
+    "name": "Canossa Catholic Primary School",
+    "lat": 1.3262,
+    "lng": 103.8824,
+    "town": "GEYLANG"
+  },
+  {
+    "name": "Haig Girls' School",
+    "lat": 1.3129,
+    "lng": 103.8997,
+    "town": "GEYLANG"
+  },
+  {
+    "name": "Chongfu School",
+    "lat": 1.4384,
+    "lng": 103.8396,
+    "town": "YISHUN"
+  },
+  {
+    "name": "South View Primary School",
+    "lat": 1.3815,
+    "lng": 103.747,
+    "town": "CHOA CHU KANG"
+  },
+  {
+    "name": "Keming Primary School",
+    "lat": 1.3468,
+    "lng": 103.7554,
+    "town": "BUKIT BATOK"
+  },
+  {
+    "name": "Bukit Panjang Primary School",
+    "lat": 1.3738,
+    "lng": 103.7692,
+    "town": "BUKIT PANJANG"
+  },
+  {
+    "name": "Princess Elizabeth Primary School",
+    "lat": 1.3533,
+    "lng": 103.7416,
+    "town": "BUKIT BATOK"
+  },
+  {
+    "name": "Nan Chiau Primary School",
+    "lat": 1.3916,
+    "lng": 103.8906,
+    "town": "SENGKANG"
+  },
+  {
+    "name": "Horizon Primary School",
+    "lat": 1.4005,
+    "lng": 103.9114,
+    "town": "PUNGGOL"
+  },
+  {
+    "name": "Oasis Primary School",
+    "lat": 1.4042,
+    "lng": 103.911,
+    "town": "PUNGGOL"
+  },
+  {
+    "name": "Punggol Green Primary School",
+    "lat": 1.4011,
+    "lng": 103.8996,
+    "town": "PUNGGOL"
+  },
+  {
+    "name": "Punggol 21 Primary School",
+    "lat": 1.4055,
+    "lng": 103.905,
+    "town": "PUNGGOL"
+  },
+  {
+    "name": "Mee Toh School",
+    "lat": 1.3995,
+    "lng": 103.9085,
+    "town": "PUNGGOL"
+  },
+  {
+    "name": "Compassvale Primary School",
+    "lat": 1.3892,
+    "lng": 103.8998,
+    "town": "SENGKANG"
+  },
+  {
+    "name": "Anchor Green Primary School",
+    "lat": 1.3905,
+    "lng": 103.8872,
+    "town": "SENGKANG"
+  },
+  {
+    "name": "Fernvale Primary School",
+    "lat": 1.392,
+    "lng": 103.8741,
+    "town": "SENGKANG"
+  },
+  {
+    "name": "Sengkang Green Primary School",
+    "lat": 1.3902,
+    "lng": 103.8778,
+    "town": "SENGKANG"
+  },
+  {
+    "name": "Teck Ghee Primary School",
+    "lat": 1.3627,
+    "lng": 103.8517,
+    "town": "ANG MO KIO"
+  },
+  {
+    "name": "Townsville Primary School",
+    "lat": 1.3615,
+    "lng": 103.8549,
+    "town": "ANG MO KIO"
+  },
+  {
+    "name": "Ang Mo Kio Primary School",
+    "lat": 1.3692,
+    "lng": 103.8396,
+    "town": "ANG MO KIO"
+  },
+  {
+    "name": "Mayflower Primary School",
+    "lat": 1.367,
+    "lng": 103.8354,
+    "town": "ANG MO KIO"
+  },
+  {
+    "name": "Jing Shan Primary School",
+    "lat": 1.3703,
+    "lng": 103.8532,
+    "town": "ANG MO KIO"
+  },
+  {
+    "name": "Anderson Primary School",
+    "lat": 1.3819,
+    "lng": 103.8415,
+    "town": "ANG MO KIO"
+  },
+  {
+    "name": "Bedok Green Primary School",
+    "lat": 1.3235,
+    "lng": 103.9381,
+    "town": "BEDOK"
+  },
+  {
+    "name": "Fengshan Primary School",
+    "lat": 1.3299,
+    "lng": 103.934,
+    "town": "BEDOK"
+  },
+  {
+    "name": "Opera Estate Primary School",
+    "lat": 1.319,
+    "lng": 103.9242,
+    "town": "BEDOK"
+  },
+  {
+    "name": "Yu Neng Primary School",
+    "lat": 1.3338,
+    "lng": 103.9328,
+    "town": "BEDOK"
+  },
+  {
+    "name": "Tampines Primary School",
+    "lat": 1.3496,
+    "lng": 103.9458,
+    "town": "TAMPINES"
+  },
+  {
+    "name": "Chongzheng Primary School",
+    "lat": 1.3508,
+    "lng": 103.9514,
+    "town": "TAMPINES"
+  },
+  {
+    "name": "Yumin Primary School",
+    "lat": 1.3512,
+    "lng": 103.951,
+    "town": "TAMPINES"
+  },
+  {
+    "name": "Junyuan Primary School",
+    "lat": 1.3475,
+    "lng": 103.9366,
+    "town": "TAMPINES"
+  },
+  {
+    "name": "Casuarina Primary School",
+    "lat": 1.3708,
+    "lng": 103.9576,
+    "town": "PASIR RIS"
+  },
+  {
+    "name": "Elias Park Primary School",
+    "lat": 1.3768,
+    "lng": 103.9442,
+    "town": "PASIR RIS"
+  },
+  {
+    "name": "Park View Primary School",
+    "lat": 1.3789,
+    "lng": 103.9372,
+    "town": "PASIR RIS"
+  },
+  {
+    "name": "Pasir Ris Primary School",
+    "lat": 1.3725,
+    "lng": 103.9628,
+    "town": "PASIR RIS"
+  },
+  {
+    "name": "White Sands Primary School",
+    "lat": 1.3653,
+    "lng": 103.9602,
+    "town": "PASIR RIS"
+  },
+  {
+    "name": "Fuchun Primary School",
+    "lat": 1.4312,
+    "lng": 103.7788,
+    "town": "WOODLANDS"
+  },
+  {
+    "name": "Innova Primary School",
+    "lat": 1.4285,
+    "lng": 103.7887,
+    "town": "WOODLANDS"
+  },
+  {
+    "name": "Marsiling Primary School",
+    "lat": 1.4342,
+    "lng": 103.7765,
+    "town": "WOODLANDS"
+  },
+  {
+    "name": "Qihua Primary School",
+    "lat": 1.4422,
+    "lng": 103.7871,
+    "town": "WOODLANDS"
+  },
+  {
+    "name": "Si Ling Primary School",
+    "lat": 1.4318,
+    "lng": 103.7825,
+    "town": "WOODLANDS"
+  },
+  {
+    "name": "Woodgrove Primary School",
+    "lat": 1.4332,
+    "lng": 103.7905,
+    "town": "WOODLANDS"
+  },
+  {
+    "name": "Woodlands Primary School",
+    "lat": 1.4365,
+    "lng": 103.7925,
+    "town": "WOODLANDS"
+  },
+  {
+    "name": "Woodlands Ring Primary School",
+    "lat": 1.4362,
+    "lng": 103.7968,
+    "town": "WOODLANDS"
+  },
+  {
+    "name": "Greenwood Primary School",
+    "lat": 1.4402,
+    "lng": 103.8048,
+    "town": "WOODLANDS"
+  },
+  {
+    "name": "Admiralty Primary School",
+    "lat": 1.4428,
+    "lng": 103.8,
+    "town": "WOODLANDS"
+  },
+  {
+    "name": "Canberra Primary School",
+    "lat": 1.4507,
+    "lng": 103.816,
+    "town": "SEMBAWANG"
+  },
+  {
+    "name": "Endeavour Primary School",
+    "lat": 1.4549,
+    "lng": 103.8184,
+    "town": "SEMBAWANG"
+  },
+  {
+    "name": "Sembawang Primary School",
+    "lat": 1.4459,
+    "lng": 103.8197,
+    "town": "SEMBAWANG"
+  },
+  {
+    "name": "Wellington Primary School",
+    "lat": 1.4526,
+    "lng": 103.8228,
+    "town": "SEMBAWANG"
+  },
+  {
+    "name": "Northoaks Primary School",
+    "lat": 1.4566,
+    "lng": 103.8202,
+    "town": "SEMBAWANG"
+  },
+  {
+    "name": "Ahmad Ibrahim Primary School",
+    "lat": 1.4334,
+    "lng": 103.833,
+    "town": "YISHUN"
+  },
+  {
+    "name": "Huamin Primary School",
+    "lat": 1.4272,
+    "lng": 103.8441,
+    "town": "YISHUN"
+  },
+  {
+    "name": "Jiemin Primary School",
+    "lat": 1.4326,
+    "lng": 103.829,
+    "town": "YISHUN"
+  },
+  {
+    "name": "Naval Base Primary School",
+    "lat": 1.4158,
+    "lng": 103.8385,
+    "town": "YISHUN"
+  },
+  {
+    "name": "Northland Primary School",
+    "lat": 1.4215,
+    "lng": 103.8407,
+    "town": "YISHUN"
+  },
+  {
+    "name": "North View Primary School",
+    "lat": 1.4287,
+    "lng": 103.848,
+    "town": "YISHUN"
+  },
+  {
+    "name": "Peiying Primary School",
+    "lat": 1.4194,
+    "lng": 103.8306,
+    "town": "YISHUN"
+  },
+  {
+    "name": "Yishun Primary School",
+    "lat": 1.4337,
+    "lng": 103.834,
+    "town": "YISHUN"
+  },
+  {
+    "name": "Boon Lay Garden Primary School",
+    "lat": 1.3432,
+    "lng": 103.7126,
+    "town": "JURONG WEST"
+  },
+  {
+    "name": "Corporation Primary School",
+    "lat": 1.3503,
+    "lng": 103.7088,
+    "town": "JURONG WEST"
+  },
+  {
+    "name": "Frontier Primary School",
+    "lat": 1.3371,
+    "lng": 103.7003,
+    "town": "JURONG WEST"
+  },
+  {
+    "name": "Jurong West Primary School",
+    "lat": 1.3414,
+    "lng": 103.6975,
+    "town": "JURONG WEST"
+  },
+  {
+    "name": "Pioneer Primary School",
+    "lat": 1.3475,
+    "lng": 103.6958,
+    "town": "JURONG WEST"
+  },
+  {
+    "name": "West Grove Primary School",
+    "lat": 1.3468,
+    "lng": 103.7005,
+    "town": "JURONG WEST"
+  },
+  {
+    "name": "Westwood Primary School",
+    "lat": 1.3512,
+    "lng": 103.698,
+    "town": "JURONG WEST"
+  },
+  {
+    "name": "Xingnan Primary School",
+    "lat": 1.3431,
+    "lng": 103.6895,
+    "town": "JURONG WEST"
+  },
+  {
+    "name": "Fuhua Primary School",
+    "lat": 1.3477,
+    "lng": 103.7314,
+    "town": "JURONG EAST"
+  },
+  {
+    "name": "Jurong Primary School",
+    "lat": 1.3499,
+    "lng": 103.7275,
+    "town": "JURONG EAST"
+  },
+  {
+    "name": "Yuhua Primary School",
+    "lat": 1.3444,
+    "lng": 103.738,
+    "town": "JURONG EAST"
+  },
+  {
+    "name": "Clementi Primary School",
+    "lat": 1.3168,
+    "lng": 103.7668,
+    "town": "CLEMENTI"
+  },
+  {
+    "name": "Pei Tong Primary School",
+    "lat": 1.3175,
+    "lng": 103.7712,
+    "town": "CLEMENTI"
+  },
+  {
+    "name": "Qifa Primary School",
+    "lat": 1.3129,
+    "lng": 103.7592,
+    "town": "CLEMENTI"
+  },
+  {
+    "name": "New Town Primary School",
+    "lat": 1.3005,
+    "lng": 103.8016,
+    "town": "QUEENSTOWN"
+  },
+  {
+    "name": "Queenstown Primary School",
+    "lat": 1.2942,
+    "lng": 103.808,
+    "town": "QUEENSTOWN"
+  },
+  {
+    "name": "Blangah Rise Primary School",
+    "lat": 1.2758,
+    "lng": 103.8085,
+    "town": "BUKIT MERAH"
+  },
+  {
+    "name": "Gan Eng Seng Primary School",
+    "lat": 1.2848,
+    "lng": 103.818,
+    "town": "BUKIT MERAH"
+  },
+  {
+    "name": "Zhangde Primary School",
+    "lat": 1.2842,
+    "lng": 103.8258,
+    "town": "BUKIT MERAH"
+  },
+  {
+    "name": "Cantonment Primary School",
+    "lat": 1.275,
+    "lng": 103.8398,
+    "town": "BUKIT MERAH"
+  },
+  {
+    "name": "First Toa Payoh Primary School",
+    "lat": 1.3364,
+    "lng": 103.8569,
+    "town": "TOA PAYOH"
+  },
+  {
+    "name": "Kheng Cheng School",
+    "lat": 1.3362,
+    "lng": 103.8504,
+    "town": "TOA PAYOH"
+  },
+  {
+    "name": "Pei Chun Public School",
+    "lat": 1.3375,
+    "lng": 103.855,
+    "town": "TOA PAYOH"
+  },
+  {
+    "name": "Marymount Convent School",
+    "lat": 1.3396,
+    "lng": 103.8447,
+    "town": "TOA PAYOH"
+  },
+  {
+    "name": "St. Gabriel's Primary School",
+    "lat": 1.3482,
+    "lng": 103.8647,
+    "town": "SERANGOON"
+  },
+  {
+    "name": "Yangzheng Primary School",
+    "lat": 1.3496,
+    "lng": 103.8687,
+    "town": "SERANGOON"
+  },
+  {
+    "name": "Zhonghua Primary School",
+    "lat": 1.3601,
+    "lng": 103.8698,
+    "town": "SERANGOON"
+  },
+  {
+    "name": "CHIJ Our Lady of Good Counsel",
+    "lat": 1.3578,
+    "lng": 103.8633,
+    "town": "SERANGOON"
+  },
+  {
+    "name": "CHST Montfort Junior",
+    "lat": 1.3712,
+    "lng": 103.8885,
+    "town": "HOUGANG"
+  },
+  {
+    "name": "Hougang Primary School",
+    "lat": 1.3789,
+    "lng": 103.8824,
+    "town": "HOUGANG"
+  },
+  {
+    "name": "Punggol Primary School",
+    "lat": 1.3774,
+    "lng": 103.8948,
+    "town": "HOUGANG"
+  },
+  {
+    "name": "Xinmin Primary School",
+    "lat": 1.3718,
+    "lng": 103.8833,
+    "town": "HOUGANG"
+  },
+  {
+    "name": "Yio Chu Kang Primary School",
+    "lat": 1.3802,
+    "lng": 103.885,
+    "town": "HOUGANG"
+  },
+  {
+    "name": "St. Anthony's Primary School",
+    "lat": 1.3627,
+    "lng": 103.7485,
+    "town": "BUKIT BATOK"
+  },
+  {
+    "name": "Lianhua Primary School",
+    "lat": 1.3548,
+    "lng": 103.7548,
+    "town": "BUKIT BATOK"
+  },
+  {
+    "name": "Dazhong Primary School",
+    "lat": 1.3601,
+    "lng": 103.7447,
+    "town": "BUKIT BATOK"
+  },
+  {
+    "name": "Beacon Primary School",
+    "lat": 1.3838,
+    "lng": 103.7712,
+    "town": "BUKIT PANJANG"
+  },
+  {
+    "name": "Greenridge Primary School",
+    "lat": 1.3855,
+    "lng": 103.7688,
+    "town": "BUKIT PANJANG"
+  },
+  {
+    "name": "West Spring Primary School",
+    "lat": 1.3888,
+    "lng": 103.7652,
+    "town": "BUKIT PANJANG"
+  },
+  {
+    "name": "Zhenghua Primary School",
+    "lat": 1.3801,
+    "lng": 103.7698,
+    "town": "BUKIT PANJANG"
+  },
+  {
+    "name": "Chua Chu Kang Primary School",
+    "lat": 1.3785,
+    "lng": 103.7408,
+    "town": "CHOA CHU KANG"
+  },
+  {
+    "name": "Concord Primary School",
+    "lat": 1.3792,
+    "lng": 103.7381,
+    "town": "CHOA CHU KANG"
+  },
+  {
+    "name": "De La Salle School",
+    "lat": 1.3965,
+    "lng": 103.7482,
+    "town": "CHOA CHU KANG"
+  },
+  {
+    "name": "Kranji Primary School",
+    "lat": 1.3987,
+    "lng": 103.745,
+    "town": "CHOA CHU KANG"
+  },
+  {
+    "name": "Teck Whye Primary School",
+    "lat": 1.3831,
+    "lng": 103.7538,
+    "town": "CHOA CHU KANG"
+  },
+  {
+    "name": "Yew Tee Primary School",
+    "lat": 1.3958,
+    "lng": 103.7442,
+    "town": "CHOA CHU KANG"
+  }
+]
