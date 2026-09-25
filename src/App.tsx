@@ -19,8 +19,30 @@ import {
   Sparkles,
   Layers,
   ChevronRight,
-  Info
+  Info,
+  Bot,
+  Wrench,
+  WifiOff
 } from 'lucide-react';
+
+interface AskToolCall {
+  name: string;
+  args: Record<string, any>;
+  failed?: boolean;
+}
+
+interface UnavailableServer {
+  address: string;
+  reason: string;
+}
+
+interface AskResponse {
+  answer: string;
+  tool_calls: AskToolCall[];
+  unavailable: UnavailableServer[];
+  model: string;
+  answered_at: string;
+}
 
 interface MrtStation {
   name: string;
@@ -104,10 +126,17 @@ interface PropertySnapshotData {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'app' | 'mcp'>('app');
+  const [activeTab, setActiveTab] = useState<'ask' | 'app' | 'mcp'>('ask');
   const [postalInput, setPostalInput] = useState('560560');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Ask Agent State
+  const [askQuestion, setAskQuestion] = useState('What is the address and coordinates for postal code 560560?');
+  const [askLoading, setAskLoading] = useState(false);
+  const [askError, setAskError] = useState<string | null>(null);
+  const [askResult, setAskResult] = useState<AskResponse | null>(null);
+  const [copiedAnswer, setCopiedAnswer] = useState(false);
 
   const [locationData, setLocationData] = useState<LocationData | null>(null);
   const [hdbData, setHdbData] = useState<HdbData | null>(null);
@@ -122,6 +151,43 @@ export default function App() {
   const [mcpLoading, setMcpLoading] = useState(false);
   const [mcpResponse, setMcpResponse] = useState<string | null>(null);
   const [copiedCurl, setCopiedCurl] = useState(false);
+
+  const handleAsk = async (questionToAsk?: string) => {
+    const q = (questionToAsk !== undefined ? questionToAsk : askQuestion).trim();
+    if (!q) {
+      setAskError('Please enter a question to ask the agent.');
+      return;
+    }
+    if (q.length > 500) {
+      setAskError('Question cannot exceed 500 characters.');
+      return;
+    }
+
+    setAskLoading(true);
+    setAskError(null);
+
+    try {
+      const res = await fetch('/api/ask', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question: q }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        const errMsg = data.error || (data.reason ? `${data.error}: ${data.reason}` : 'Failed to query the agent.');
+        setAskError(errMsg);
+      } else {
+        setAskResult(data);
+      }
+    } catch (err: any) {
+      setAskError(err.message || 'Failed to connect to /api/ask endpoint.');
+    } finally {
+      setAskLoading(false);
+    }
+  };
 
   // Quick preset postal codes in Singapore
   const presets = [
@@ -251,10 +317,21 @@ export default function App() {
             </div>
           </div>
 
-          <div className="flex items-center space-x-2 bg-slate-900 border border-slate-800 p-1 rounded-xl">
+          <div className="flex items-center space-x-1 sm:space-x-2 bg-slate-900 border border-slate-800 p-1 rounded-xl">
+            <button
+              onClick={() => setActiveTab('ask')}
+              className={`px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition flex items-center space-x-1.5 ${
+                activeTab === 'ask'
+                  ? 'bg-indigo-600 text-white shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-indigo-200" />
+              <span>Ask Agent (/api/ask)</span>
+            </button>
             <button
               onClick={() => setActiveTab('app')}
-              className={`px-4 py-1.5 rounded-lg text-sm font-medium transition ${
+              className={`px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition ${
                 activeTab === 'app'
                   ? 'bg-sky-600 text-white shadow-sm'
                   : 'text-slate-400 hover:text-slate-200'
@@ -264,13 +341,13 @@ export default function App() {
             </button>
             <button
               onClick={() => setActiveTab('mcp')}
-              className={`px-4 py-1.5 rounded-lg text-sm font-medium transition flex items-center space-x-1.5 ${
+              className={`px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition flex items-center space-x-1.5 ${
                 activeTab === 'mcp'
-                  ? 'bg-indigo-600 text-white shadow-sm'
+                  ? 'bg-purple-600 text-white shadow-sm'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              <Server className="w-4 h-4" />
+              <Server className="w-3.5 h-3.5" />
               <span>MCP Protocol (/api/mcp)</span>
             </button>
           </div>
@@ -279,7 +356,232 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {activeTab === 'app' ? (
+        {activeTab === 'ask' ? (
+          <div className="space-y-8">
+            {/* Ask Banner */}
+            <div className="bg-gradient-to-b from-slate-900 to-slate-900/70 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/80 border border-indigo-500/30 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-4">
+                  <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>Gemini 3.8 Flash &bull; Multi-MCP Intelligence Agent</span>
+                </div>
+                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2">
+                  Ask the Singapore Rental Agent
+                </h1>
+                <p className="text-sm sm:text-base text-slate-400 mb-6">
+                  The agent answers your question by letting Gemini autonomously choose among tools published by the MCP servers in <code className="text-xs bg-slate-800 px-1.5 py-0.5 rounded text-sky-300 font-mono">MCP_SERVERS</code>.
+                </p>
+
+                {/* Question Text Box */}
+                <div className="space-y-3">
+                  <div className="relative">
+                    <textarea
+                      rows={3}
+                      maxLength={500}
+                      value={askQuestion}
+                      onChange={(e) => setAskQuestion(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                          e.preventDefault();
+                          handleAsk();
+                        }
+                      }}
+                      placeholder="Ask anything about Singapore rentals, postal codes, or HDB comparables (e.g., What is the address, coordinates, and nearby MRT for postal code 560560?)"
+                      className="w-full bg-slate-950/90 border border-slate-700 rounded-xl p-4 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base resize-none shadow-inner"
+                    />
+                    <div className="absolute right-3 bottom-3 text-xs text-slate-500 font-mono">
+                      {askQuestion.length}/500
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    {/* Quick Prompts */}
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-xs text-slate-500">Suggestions:</span>
+                      {[
+                        { label: 'Postal 560560 info', text: 'What is the address and coordinates for postal code 560560?' },
+                        { label: 'Ang Mo Kio 4-Room Rents', text: 'What are the recent 4-room HDB rental comparables in Ang Mo Kio?' },
+                        { label: 'Tampines 520201 Snapshot', text: 'Give me a property snapshot and nearest MRT for postal code 520201.' }
+                      ].map((item, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => {
+                            setAskQuestion(item.text);
+                            handleAsk(item.text);
+                          }}
+                          className="text-xs px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 transition border border-slate-700/60"
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Submit Button */}
+                    <button
+                      onClick={() => handleAsk()}
+                      disabled={askLoading || !askQuestion.trim()}
+                      className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white rounded-xl font-medium transition flex items-center justify-center space-x-2 shadow-lg shadow-indigo-600/25 shrink-0 w-full sm:w-auto"
+                    >
+                      {askLoading ? (
+                        <>
+                          <RefreshCw className="w-4 h-4 animate-spin" />
+                          <span>Consulting Agent...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Sparkles className="w-4 h-4" />
+                          <span>Ask Agent</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                {askError && (
+                  <div className="mt-4 p-4 rounded-xl bg-red-950/50 border border-red-800/80 text-red-300 text-xs sm:text-sm flex items-start space-x-3">
+                    <AlertCircle className="w-5 h-5 shrink-0 text-red-400 mt-0.5" />
+                    <div>
+                      <div className="font-semibold">Query Failed</div>
+                      <div className="text-red-200 mt-0.5">{askError}</div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Answer & Inspection Results */}
+            {askResult && (
+              <div className="space-y-6">
+                {/* The Answer */}
+                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-7 shadow-xl">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-slate-800 gap-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-9 h-9 rounded-lg bg-indigo-950 border border-indigo-500/40 flex items-center justify-center text-indigo-400">
+                        <Bot className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-white text-base">Agent Response</h3>
+                        <div className="flex items-center space-x-2 text-xs text-slate-400">
+                          <span className="font-mono text-indigo-400">{askResult.model}</span>
+                          <span>&bull;</span>
+                          <span>Answered at {new Date(askResult.answered_at).toLocaleTimeString()}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(askResult.answer);
+                        setCopiedAnswer(true);
+                        setTimeout(() => setCopiedAnswer(false), 2000);
+                      }}
+                      className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition border border-slate-700/60 self-start sm:self-auto"
+                    >
+                      {copiedAnswer ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                      <span>{copiedAnswer ? 'Copied' : 'Copy Answer'}</span>
+                    </button>
+                  </div>
+
+                  <div className="text-slate-100 text-sm sm:text-base leading-relaxed whitespace-pre-line bg-slate-950/60 p-4 sm:p-5 rounded-xl border border-slate-800/80 font-normal">
+                    {askResult.answer}
+                  </div>
+                </div>
+
+                {/* Every Tool Called Under The Answer */}
+                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-2">
+                      <Wrench className="w-5 h-5 text-sky-400" />
+                      <h3 className="font-semibold text-white text-base">Tools Called by Agent</h3>
+                      <span className="px-2 py-0.5 rounded-full text-xs font-mono font-medium bg-sky-950 border border-sky-500/40 text-sky-400">
+                        {askResult.tool_calls.length} {askResult.tool_calls.length === 1 ? 'call' : 'calls'}
+                      </span>
+                    </div>
+                    <span className="text-xs text-slate-400">Chronological execution</span>
+                  </div>
+
+                  {askResult.tool_calls.length === 0 ? (
+                    <div className="p-4 rounded-xl bg-slate-950/50 border border-slate-800 text-slate-400 text-sm italic">
+                      No tools were invoked for this query.
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      {askResult.tool_calls.map((call, idx) => (
+                        <div
+                          key={idx}
+                          className="bg-slate-950 border border-slate-800/90 rounded-xl p-4 transition hover:border-slate-700"
+                        >
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center space-x-2">
+                              <span className="w-5 h-5 rounded-full bg-slate-800 text-slate-400 text-xs flex items-center justify-center font-mono font-bold">
+                                {idx + 1}
+                              </span>
+                              <span className="font-mono text-sm font-semibold text-sky-300">
+                                {call.name}
+                              </span>
+                            </div>
+
+                            {call.failed ? (
+                              <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full bg-red-950 border border-red-500/40 text-red-400 text-xs font-medium">
+                                <AlertCircle className="w-3 h-3" />
+                                <span>Failed</span>
+                              </span>
+                            ) : (
+                              <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-400 text-xs font-medium">
+                                <CheckCircle2 className="w-3 h-3" />
+                                <span>Success</span>
+                              </span>
+                            )}
+                          </div>
+
+                          <div className="mt-2">
+                            <div className="text-xs text-slate-400 mb-1 font-medium">Arguments:</div>
+                            <pre className="bg-slate-900 border border-slate-800 rounded-lg p-3 text-xs text-sky-200 font-mono overflow-x-auto">
+                              {JSON.stringify(call.args, null, 2)}
+                            </pre>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Unavailable Servers (in grey) */}
+                {askResult.unavailable && askResult.unavailable.length > 0 && (
+                  <div className="bg-slate-900/60 border border-slate-800/90 rounded-2xl p-6 shadow-xl">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <WifiOff className="w-4 h-4 text-slate-400" />
+                      <h3 className="font-medium text-slate-300 text-sm">Unavailable MCP Servers</h3>
+                      <span className="px-2 py-0.5 rounded-full text-xs font-mono bg-slate-800 text-slate-400 border border-slate-700">
+                        {askResult.unavailable.length}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-400 mb-3">
+                      The agent noted the following endpoints were unreachable and safely proceeded without them:
+                    </p>
+
+                    <div className="space-y-2">
+                      {askResult.unavailable.map((unav, idx) => (
+                        <div
+                          key={idx}
+                          className="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between text-xs gap-2"
+                        >
+                          <div className="flex items-center space-x-2">
+                            <span className="w-2 h-2 rounded-full bg-slate-500 shrink-0" />
+                            <span className="font-mono text-slate-300 font-medium break-all">{unav.address}</span>
+                          </div>
+                          <span className="text-slate-400 bg-slate-900 px-2 py-1 rounded border border-slate-800 shrink-0">
+                            {unav.reason}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        ) : activeTab === 'app' ? (
           <div className="space-y-8">
             {/* Search Banner */}
             <div className="bg-gradient-to-b from-slate-900 to-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">

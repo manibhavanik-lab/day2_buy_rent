@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import handler from './api/mcp.js';
+import askHandler from './api/ask.js';
 import onemapHandler from './api/onemap.js';
 import hdbHandler from './api/hdb.js';
 import insightsHandler from './api/insights.js';
@@ -19,6 +20,10 @@ app.use(express.json());
 app.post('/api/mcp', handler);
 app.get('/api/mcp', handler);
 app.options('/api/mcp', handler);
+
+// Register Ask agent endpoint on POST /api/ask
+app.post('/api/ask', askHandler);
+app.options('/api/ask', askHandler);
 
 // Register application data routes
 app.get('/api/onemap', onemapHandler);
