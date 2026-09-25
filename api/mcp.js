@@ -170,6 +170,18 @@ function registerTools(server) {
  * MCP Server HTTP Handler for /api/mcp
  */
 export default async function handler(req, res) {
+  // Set CORS headers for cross-origin MCP client access
+  if (res.setHeader) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization');
+  }
+
+  if (req.method === 'OPTIONS') {
+    res.statusCode = 204;
+    return res.end();
+  }
+
   if (req.method !== 'POST') {
     const errorBody = {
       jsonrpc: '2.0',

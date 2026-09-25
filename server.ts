@@ -18,6 +18,7 @@ app.use(express.json());
 // Register MCP server handler on POST and GET /api/mcp
 app.post('/api/mcp', handler);
 app.get('/api/mcp', handler);
+app.options('/api/mcp', handler);
 
 // Register application data routes
 app.get('/api/onemap', onemapHandler);
