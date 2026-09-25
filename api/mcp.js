@@ -182,7 +182,105 @@ export default async function handler(req, res) {
     return res.end();
   }
 
-  if (req.method !== 'POST') {
+  // If client sends GET with text/event-stream, proceed to McpServer SSE handler
+  const isSSE = req.method === 'GET' && req.headers && req.headers.accept && req.headers.accept.includes('text/event-stream');
+
+  // Handle standard browser navigation or health checks via GET
+  if (req.method === 'GET' && !isSSE) {
+    const acceptsHtml = req.headers && req.headers.accept && req.headers.accept.includes('text/html');
+
+    if (acceptsHtml) {
+      const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCP Server: renter-server (1.0.0)</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0b0f19; color: #f3f4f6; margin: 0; padding: 2.5rem 1rem; line-height: 1.5; }
+    .container { max-width: 720px; margin: 0 auto; background: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    .badge { display: inline-flex; align-items: center; gap: 0.5rem; background: #064e3b; color: #34d399; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem; border: 1px solid #059669; }
+    .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; }
+    h1 { margin: 0 0 0.5rem 0; font-size: 1.75rem; color: #ffffff; }
+    p { color: #9ca3af; margin: 0 0 1.5rem 0; }
+    .card { background: #1f2937; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1rem; border: 1px solid #374151; }
+    .card h3 { margin: 0 0 0.25rem 0; font-size: 1rem; color: #60a5fa; font-family: monospace; }
+    .card p { margin: 0; font-size: 0.875rem; color: #d1d5db; }
+    pre { background: #030712; padding: 1rem; border-radius: 6px; overflow-x: auto; font-size: 0.8125rem; color: #a5f3fc; border: 1px solid #1e293b; }
+    a.btn { display: inline-block; background: #2563eb; color: #ffffff; text-decoration: none; padding: 0.625rem 1.25rem; border-radius: 6px; font-weight: 500; font-size: 0.875rem; transition: background 0.15s; }
+    a.btn:hover { background: #1d4ed8; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge"><span class="badge-dot"></span> MCP Server Online & Ready</div>
+    <h1>renter-server v1.0.0</h1>
+    <p>Streamable HTTP Model Context Protocol (MCP) server for Singapore HDB and private rental analytics.</p>
+    
+    <h2 style="font-size: 1.125rem; margin: 1.5rem 0 0.75rem 0;">Available MCP Tools</h2>
+    <div class="card">
+      <h3>renter_lookup_postal_code</h3>
+      <p>Geocode a Singapore 6-digit postal code into official address, latitude, and longitude using OneMap.</p>
+    </div>
+    <div class="card">
+      <h3>renter_hdb_comparables</h3>
+      <p>Fetch official recent HDB median rental transactions and rent per sqm from Data.gov.sg.</p>
+    </div>
+    <div class="card">
+      <h3>renter_property_snapshot</h3>
+      <p>Combine location coordinates, closest MRT station distance, and median rent benchmarks into a single view.</p>
+    </div>
+
+    <h2 style="font-size: 1.125rem; margin: 1.5rem 0 0.75rem 0;">How to Invoke (POST)</h2>
+    <p style="margin-bottom: 0.5rem;">External agents and MCP clients connect to this endpoint via JSON-RPC 2.0 HTTP POST:</p>
+    <pre>curl -X POST https://day2buyrent.vercel.app/api/mcp \\
+  -H "Content-Type: application/json" \\
+  -H "Accept: application/json, text/event-stream" \\
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}'</pre>
+
+    <div style="margin-top: 1.5rem;">
+      <a class="btn" href="/">Open Web Dashboard & Interactive Explorer &rarr;</a>
+    </div>
+  </div>
+</body>
+</html>`;
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.statusCode = 200;
+      return res.end(html);
+    }
+
+    const infoBody = {
+      status: 'online',
+      server: 'renter-server',
+      version: '1.0.0',
+      protocol: 'Streamable HTTP (MCP 2024-11-05 / 2025-11-25)',
+      tools: [
+        {
+          name: 'renter_lookup_postal_code',
+          description: 'Geocode a Singapore 6-digit postal code into official address, latitude, and longitude.',
+        },
+        {
+          name: 'renter_hdb_comparables',
+          description: 'Fetch recent HDB rental transactions from Data.gov.sg filtered by town and flat type.',
+        },
+        {
+          name: 'renter_property_snapshot',
+          description: 'Aggregate location, nearby MRT distance, and median rent benchmarks.',
+        },
+      ],
+      usage: 'Send JSON-RPC 2.0 POST requests to this endpoint or open in browser to view the HTML documentation.',
+    };
+
+    if (res.status && typeof res.status === 'function') {
+      return res.status(200).json(infoBody);
+    } else {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      return res.end(JSON.stringify(infoBody, null, 2));
+    }
+  }
+
+  if (req.method !== 'POST' && !isSSE) {
     const errorBody = {
       jsonrpc: '2.0',
       error: {
@@ -202,10 +300,15 @@ export default async function handler(req, res) {
   }
 
   // Ensure accept header meets Streamable HTTP expectations for MCP clients
-  if (req.headers && (!req.headers.accept || !req.headers.accept.includes('text/event-stream'))) {
-    req.headers.accept = req.headers.accept
-      ? `${req.headers.accept}, text/event-stream`
-      : 'application/json, text/event-stream';
+  if (!req.headers['accept'] || req.headers['accept'] === '*/*') {
+    req.headers['accept'] = 'application/json, text/event-stream';
+  } else {
+    if (!req.headers['accept'].includes('text/event-stream')) {
+      req.headers['accept'] += ', text/event-stream';
+    }
+    if (!req.headers['accept'].includes('application/json')) {
+      req.headers['accept'] = 'application/json, ' + req.headers['accept'];
+    }
   }
 
   const server = new McpServer({
