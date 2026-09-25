@@ -218,7 +218,7 @@ export default function App() {
     }
   };
 
-  const curlExample = `curl -X POST https://buy-or-rent-2.vercel.app/api/mcp \\
+  const curlExample = `curl -X POST https://day2buyrent.vercel.app/api/mcp \\
   -H "Content-Type: application/json" \\
   -H "Accept: application/json, text/event-stream" \\
   -d '{
